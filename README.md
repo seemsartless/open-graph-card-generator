@@ -1,5 +1,9 @@
 # open-graph-card-generator
 Simple Python script that uses PIL to create an image with text on it to be used as an Open Graph card.
+  * [Our goal](#our-goal)
+  * [One time setup](#one-time-setup)
+  * [Overlay image](#overlay-image)
+  * [Specific Pillow / PIL code](#specific-python-code)
 
 ## Our goal
 I was looking for a fast, consistent way of generating Open Graph 'cards' for my Wordpress content. Nothing I found
@@ -16,10 +20,10 @@ Once the script is set up, I can change five variables in Step 1. to quickly gen
 - Filename for the new image we're creating:
   - `out_file_name = 'card-cherry-blossoms.jpg'`
 
-Find a suitable background image, change those variables and run the script! Well, after the...
+Find a suitable background image, change those variables and run the script and you're done! Well, after the...
 
 ## One time setup
-Nothing is quite that easy - in Step 2 I include some variables that you will also need to set up once.
+Nothing is quite that easy - in Step 2 I include some variables that you will also need to set up before running the script for the first time.
 
 Folder locations should be straight forward - no slash at the end of the path names:
 - `img_folder = 'input'  # or full path like '/Users/user1/web_pages/background'`
@@ -33,5 +37,26 @@ I wanted enough control over the generated images to have an image I can use as 
 
 You can create your own image, again with lots of transparent empty sections, for your own use.
 
-## Rest of the code
-Once we have everything set up the rest of the code is pretty straightforward PIL code.
+## Specific Python code
+Once we have everything set up the Pillow PIL Python code is pretty straightforward.
+We define the image we are working on with a `img = Image.open()` call to the Image Module
+
+Once we have the `img` object we use the following attributes:
+- `img.width` - number of pixels wide the image is
+- `img.height` - number of pixels tall the image is
+- `img.mode` - pixel format used by the image - we're assuming 'RGB' and use img.convert() if the image started out in greyscale (mode = "L")
+
+And we call the following functions:
+- `img.convert(mode="RGB")` - used to convert a greyscale image to RBG if necessary
+- `img.resize()` - resize the image background image to the size we want
+- `img.crop()` - crop the resized image if it wasn't originally the same aspect ratio that we want
+- `img.filter()` - apply the `img_blur` amount of blur to the background image so that it isn't too distracting
+- `img.paste()` - paste the foreground that we created on top of the background image
+- `img.save()` - save the new image we created to disk
+- `img.show()` - we also show the image once it is created, which is useful when you are getting things set up
+
+I mentioned the 'foreground' that we pasted - that is the last element here - we created a 'draw' object with `draw = ImageDraw.Draw(img, "RGBA")` that we add various graphic elements to, with the following calls:
+- `draw.rectangle()` the centre rectangle that makes the text easier to read over the blurred background image, and the center green line
+- `draw.text()` to write the three lines of text
+
+You can see the documentation for these attributes and functions at https://pillow.readthedocs.io/en/stable/reference/index.html
