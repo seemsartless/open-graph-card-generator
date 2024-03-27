@@ -32,10 +32,10 @@ Folder locations should be straight forward - no slash at the end of the path na
 The other variables deal with how much blur to add to the background image (`img_blur`) and colors to use (`font_color` and `fill_color_and_transparency`) and the overlay image to use, which we will cover next.
 
 ## Overlay image
-I wanted enough control over the generated images to have an image I can use as an overlay - in this example it isn't very complicated, but you could add your logo, a more colorful image, etc. The png file I included here (`card-overlay-1200x630.xcf`) was generated with The Gimp (see https://www.gimp.org/ )and has a transparent background. It looks like the following:
+I wanted enough control over the generated images to have an image I can use as an overlay - in this example it isn't very complicated, but you could add your logo, a more colorful image, etc. The png file I included here (`card-overlay-1200x630.xcf`) was generated with The Gimp (see https://www.gimp.org/ ) and has a transparent background. It looks like the following:
 ![Simple overlay image](input/card-overlay-1200x630.png)
 
-You can create your own image, again with lots of transparent empty sections, for your own use.
+You can create your own image, again with lots of transparent empty sections so that the background image is visible in places, for your own use.
 
 ## Specific Python code
 Once we have everything set up the Pillow PIL Python code is pretty straightforward.
@@ -59,4 +59,4 @@ I mentioned the 'foreground' that we pasted - that is the last element here - we
 - `draw.rectangle()` the centre rectangle that makes the text easier to read over the blurred background image, and the center green line
 - `draw.text()` to write the three lines of text
 
-You can see the documentation for these attributes and functions at https://pillow.readthedocs.io/en/stable/reference/index.html
+That's it! Clearly there should be more error checking, all of this could be made into a more flexible Python object, and so on. But the intent was a quick and easy to understand script. You can see the documentation for these attributes and functions at https://pillow.readthedocs.io/en/stable/reference/index.html
