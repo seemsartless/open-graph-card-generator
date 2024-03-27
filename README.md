@@ -32,7 +32,7 @@ Folder locations should be straight forward - no slash at the end of the path na
 The other variables deal with how much blur to add to the background image (`img_blur`) and colors to use (`font_color` and `fill_color_and_transparency`) and the overlay image to use, which we will cover next.
 
 ## Overlay image
-I wanted enough control over the generated images to have an image I can use as an overlay - in this example it isn't very complicated, but you could add your logo, a more colorful image, etc. The png file I included here (`card-overlay-1200x630.xcf`) was generated with The Gimp and has a transparent background. It looks like the following:
+I wanted enough control over the generated images to have an image I can use as an overlay - in this example it isn't very complicated, but you could add your logo, a more colorful image, etc. The png file I included here (`card-overlay-1200x630.xcf`) was generated with The Gimp (see https://www.gimp.org/ )and has a transparent background. It looks like the following:
 ![Simple overlay image](input/card-overlay-1200x630.png)
 
 You can create your own image, again with lots of transparent empty sections, for your own use.
